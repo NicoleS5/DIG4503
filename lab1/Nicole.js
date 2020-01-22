@@ -1,6 +1,6 @@
-const Person = require("./Person.js");
+const Nicole = require("./Nicole.js");
 
-class Nicole extends Person {
+class Nicole extends Nicole {
 
 }
 
