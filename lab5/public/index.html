@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 5</title>
+  </head>
+
+  <body>
+    <script>
+      function nameFunction(event) {
+        event.preventDefault();
+        let input = document.querySelector("#name");
+
+      fetch("/api/name/"+input.value)
+      .then((res) => {
+        return res.json();
+      }).then((processed) => {
+        let report = document.querySelector("#reportHere");
+
+        if(processed.error) {
+          report.innerHTML = processed.error;
+        }else{
+          report.innerHTML = processed;
+        }
+      });
+    }
+
+    function idFunction(event) {
+      event.preventDefault();
+      let input = document.querySelector("#ID");
+
+      fetch("/api/id/" + input.value)
+      .then((res) => {
+        return res.json();
+      }).then((processed) => {
+        let report = document.querySelector("#reportHere");
+        
+        if(processed.error){
+          report.innerHTML = processed.error;
+        }else{
+          report.innerHTML = processed;
+        }
+      });
+    }
+    </script>
+    <form onSubmit = "idFunction(event)">
+      <input type="text" id="ID">
+      <button>ID</button>
+    </form>
+    <form onSubmit = "nameFunction(event)">
+        <input type="text" id="name">
+        <button>Name</button>
+    </form>
+    <div id="reportHere"></div>
+  </body>
+  </html>
